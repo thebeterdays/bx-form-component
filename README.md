@@ -3,7 +3,7 @@
 __Calling example:__
 ```php
 $APPLICATION->IncludeComponent(
-	"custom:bitrix-custom-form",
+	"custom:form",
 	"",
 	[
         'IBLOCK_ID' => '1',
