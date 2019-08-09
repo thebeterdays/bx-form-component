@@ -12,7 +12,7 @@ class Form extends CBitrixComponent {
 		
 		$request = Application::getInstance()->getContext()->getRequest();
 		
-		if ($_POST) {
+		if ($request->getPost('COMPONENT') == 'custom:form') {
 			$GLOBALS['APPLICATION']->RestartBuffer();
 			
 			$props = $request->getPostList();

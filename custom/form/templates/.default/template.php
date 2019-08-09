@@ -1,85 +1,85 @@
 <?
 /**
  * @var $APPLICATION
+ * @var $templateFolder
  */
+
+$asset = \Bitrix\Main\Page\Asset::getInstance();
+$asset->addCss($templateFolder. '/css/bootstrap.min.css');
+$asset->addJs($templateFolder. '/js/bootstrap.min.css');
+$asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
 ?>
 
-<section class="block-padd">
-    <div class="container">
-        <div class="pagewside-content">
-            <div class="text-content">
-                <div class="h4">Наши требования к дилерам:</div>
-                <ul>
-                    <li>Наличие офиса, выставочной или торговой площади, торговой площадки в&nbsp;интернете и&nbsp;складских помещений</li>
-                    <li>Проведение согласованной с «Мебельной Фабрикой Краснодар» рекламной и&nbsp;ценовой политики;</li>
-                    <li>Оказание услуг по гарантийному и&nbsp;послепродажному обслуживанию и&nbsp;ремонту продукции «Мебельной Фабрики Краснодар»</li>
-                </ul>
-            </div>
-            <div class="pt-4 pt-md-5">
-                <div class="text-content">
-                    <div class="h4">Оставьте заявку</div>
-                    <p>Дилером может быть любое юридическое лицо любой формы собственности, осуществляющее свою деятельность согласно законодательства РФ и приобретающее мебель для последующей перепродажи.</p>
-                </div>
-                <div class="form pt-4 pt-md-5">
-                    <form action="#" id="form-1" data-component="custom:form/dealer">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Ваше имя" id="name" data-component="custom:form/dealer" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control phone" type="tel" placeholder="Ваш телефон" id="phone" data-component="custom:form/dealer" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="email" placeholder="Ваш E-mail" id="email" data-component="custom:form/dealer" required>
-                                </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form id="form" data-component="custom:form/.default">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="name">First name</label>
+                            <input class="form-control" type="text" placeholder="First name" id="name" data-component="custom:form/.default" value="" required>
+                            <div class="valid-feedback">
+                                Looks good!
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Расскажите о вашей компании" name="" rows="9" id="about" data-component="custom:form/dealer" required></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12 col-sm mb-2 mb-sm-0">
-                                        <label class="ch-check">
-                                            <input type="checkbox" checked="checked" disabled>
-                                            <span><small>Нажимая кнопку отправить вы соглашаетесь на <a id="personal-data" href="#personal-data">обработку персональных данных</a></small></span>
-                                        </label>
-                                    </div>
-                                    <div class="col-12 col-sm-auto text-right">
-                                        <button class="mbtn mbtn-brddark warrow-right" id="button-1" data-component="custom:form/dealer"><span>Отправить</span></button>
-                                    </div>
-                                </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid name.
                             </div>
                         </div>
-                    </form>
+                        <div class="col-md-4 mb-3">
+                            <label for="phone">Phone</label>
+                            <input class="form-control" type="tel" placeholder="Phone" id="phone" data-component="custom:form/.default" value="" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid phone.
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="email">E-mail</label>
+                            <input class="form-control" type="email" placeholder="E-mail" id="email" data-component="custom:form/.default" value="" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid e-mail.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" placeholder="Message" name="" rows="5" id="message" data-component="custom:form/.default" required></textarea>
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid message.
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="button" data-component="custom:form/.default">Submit form</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</section>
+</div>
 
 <script type="application/javascript">
     `use strict`;
-    
-    $(`#button-1[data-component='custom:form/dealer']`).click(e => {
+
+    $(`#button[data-component='custom:form/.default']`).click(e => {
         e.preventDefault();
         let status = true;
-        $(`#form-1[data-component='custom:form/dealer']`).find(`input[required]`).each((index, el) => {
+        $(`#form[data-component='custom:form/.default']`).find(`*[required]`).each((index, el) => {
             if ($(el).val() === ``) {
-                $(el).css(`border-color`, `red`);
+                $(el).removeClass(`is-valid`);
+                $(el).addClass(`is-invalid`);
                 status = false
             } else {
-                $(el).css(`border-color`, `#666`);
-            }
-        });
-        $(`#form-1[data-component='custom:form/dealer']`).find(`textarea[required]`).each((index, el) => {
-            if ($(el).val() === ``) {
-                $(el).css(`border-color`, `red`);
-                status = false
-            } else {
-                $(el).css(`border-color`, `#666`);
+                $(el).addClass(`is-valid`);
+                $(el).removeClass(`is-invalid`);
             }
         });
         if (status) {
@@ -87,10 +87,11 @@
                 method: `post`,
                 url: `<?=$APPLICATION->GetCurDir()?>`,
                 data: {
-                    NAME: $(`#name[data-component='custom:form/dealer']`).val(),
-                    EMAIL: $(`#email[data-component='custom:form/dealer']`).val(),
-                    PHONE: $(`#phone[data-component='custom:form/dealer']`).val(),
-                    ABOUT: $(`#about[data-component='custom:form/dealer']`).val()
+                    COMPONENT: `custom:form`,
+                    NAME: $(`#name[data-component='custom:form/.default']`).val(),
+                    EMAIL: $(`#email[data-component='custom:form/.default']`).val(),
+                    PHONE: $(`#phone[data-component='custom:form/.default']`).val(),
+                    MESSAGE: $(`#message[data-component='custom:form/.default']`).val()
                 },
                 success: (data) => {
                     data = JSON.parse(data);
