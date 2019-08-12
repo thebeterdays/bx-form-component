@@ -1,4 +1,4 @@
-# Bitrix form component
+# Bitrix custom form component
 
 __Component calling example for default template:__
 ```php
