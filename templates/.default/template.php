@@ -87,7 +87,7 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
                 method: `post`,
                 url: `<?=$APPLICATION->GetCurDir()?>`,
                 data: {
-                    COMPONENT: `custom:form`,
+                    TOKEN: `<?=$arParams['TOKEN']?>`,
                     NAME: $(`#name[data-component='custom:form/.default']`).val(),
                     EMAIL: $(`#email[data-component='custom:form/.default']`).val(),
                     PHONE: $(`#phone[data-component='custom:form/.default']`).val(),

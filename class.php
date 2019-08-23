@@ -1,7 +1,8 @@
 <?
 
 use \Bitrix\Main\Application,
-	\Bitrix\Main\Loader;
+	\Bitrix\Main\Loader,
+	\Bitrix\Main\Mail;
 
 /**
  * Class Form
@@ -12,7 +13,7 @@ class Form extends CBitrixComponent {
 		
 		$request = Application::getInstance()->getContext()->getRequest();
 		
-		if ($request->getPost('COMPONENT') == 'custom:form') {
+		if ($request->getPost('TOKEN') == $this->arParams['TOKEN']) {
 			$GLOBALS['APPLICATION']->RestartBuffer();
 			
 			$props = $request->getPostList();
@@ -20,7 +21,15 @@ class Form extends CBitrixComponent {
 			$iblock_id = $this->arParams['IBLOCK_ID'];
 			$this->save($iblock_id, $props, $available_props);
 			
-			echo json_encode(['status' => true]);
+			$mail_send_result = Mail\Event::send(
+				array(
+					'EVENT_NAME' => $this->arParams['MAIL_EVENT'],
+					'LID' => SITE_ID,
+					'C_FIELDS' => $props->toArray()
+				)
+			);
+			
+			echo json_encode(['status' => true, 'mail_send_result' => $mail_send_result]);
 			
 			exit();
 		}
