@@ -3,8 +3,8 @@
 __Component calling example for default template:__
 ```php
 $APPLICATION->IncludeComponent(
-	"custom:form",
-	"",
+    "custom:form",
+    "",
     array(
         'IBLOCK_ID' => '1',
         'MAIL_EVENT' => 'FORM_SENDED',
