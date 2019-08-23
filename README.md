@@ -5,16 +5,16 @@ __Component calling example for default template:__
 $APPLICATION->IncludeComponent(
 	"custom:form",
 	"",
-	[
+	array(
         'IBLOCK_ID' => '1',
         'MAIL_EVENT' => 'FORM_SENDED',
         'TOKEN' => 'form001',
-        'PROPS' => [
+        'PROPS' => array(
             'NAME', // type - string
             'EMAIL', // type - string
             'PHONE', // type - string
             'MESSAGE,TEXT', // type - html/text
-        ],
-    ]
+        ),
+    )
 );
 ```
