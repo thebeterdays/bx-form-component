@@ -14,6 +14,7 @@ $APPLICATION->IncludeComponent(
             'EMAIL', // type - string
             'PHONE', // type - string
             'MESSAGE,TEXT', // type - html/text
+            'DOCUMENT,FILE' // type - file
         ),
     )
 );
