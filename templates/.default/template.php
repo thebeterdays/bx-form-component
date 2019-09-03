@@ -2,6 +2,7 @@
 /**
  * @var $APPLICATION
  * @var $templateFolder
+ * @var $arParams
  */
 
 $asset = \Bitrix\Main\Page\Asset::getInstance();
@@ -13,7 +14,7 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
-            <form id="form" data-component="custom:form/.default">
+            <form id="form" data-component="custom:form/.default" enctype="multipart/form-data" type="post">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
@@ -58,6 +59,10 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
                         <div class="invalid-feedback">
                             Please provide a valid message.
                         </div>
+                        <div class="custom-file col-md-12 mb-3">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        </div>
                     </div>
                     <button class="btn btn-primary" type="submit" id="button" data-component="custom:form/.default">Submit form</button>
                 </div>
@@ -68,6 +73,10 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
 
 <script type="application/javascript">
     `use strict`;
+
+    $(`.custom-file-input`).change(e => {
+        $(e.currentTarget).next(`.custom-file-label`).html(e.currentTarget.files[0].name);
+    });
 
     $(`#button[data-component='custom:form/.default']`).click(e => {
         e.preventDefault();
@@ -83,20 +92,25 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
             }
         });
         if (status) {
+            let file_input = $(`#validatedCustomFile`);
+            let data = new FormData;
+            data.append(`DOCUMENT`, file_input.prop(`files`)[0]);
+            data.append(`TOKEN`, `<?=$arParams['TOKEN']?>`);
+            data.append(`EMAIL`, $(`#email[data-component='custom:form/.default']`).val());
+            data.append(`NAME`, $(`#name[data-component='custom:form/.default']`).val());
+            data.append(`PHONE`, $(`#phone[data-component='custom:form/.default']`).val());
+            data.append(`MESSAGE`, $(`#message[data-component='custom:form/.default']`).val());
+            data.append(`DETAIL_URL`, `<?=$APPLICATION->GetCurDir()?>`);
             $.ajax({
                 method: `post`,
                 url: `<?=$APPLICATION->GetCurDir()?>`,
-                data: {
-                    TOKEN: `<?=$arParams['TOKEN']?>`,
-                    NAME: $(`#name[data-component='custom:form/.default']`).val(),
-                    EMAIL: $(`#email[data-component='custom:form/.default']`).val(),
-                    PHONE: $(`#phone[data-component='custom:form/.default']`).val(),
-                    MESSAGE: $(`#message[data-component='custom:form/.default']`).val()
-                },
+                data: data,
+                contentType: false,
+                processData: false,
                 success: (data) => {
                     data = JSON.parse(data);
                     if (data.status == true) {
-                        alert(`Ваша заявка отправлена!`);
+                        alert(`Success!`);
                         location.reload();
                     }
                 }
