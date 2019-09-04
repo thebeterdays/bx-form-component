@@ -15,6 +15,7 @@ $APPLICATION->IncludeComponent(
             'PHONE', // type - string
             'SELECT', // type - select
             'CHECKBOX', // type - string
+            'DATE', // type - date
             'MESSAGE,TEXT', // type - html/text
             'DOCUMENT,FILE' // type - file
         ),
