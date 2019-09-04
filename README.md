@@ -13,6 +13,8 @@ $APPLICATION->IncludeComponent(
             'NAME', // type - string
             'EMAIL', // type - string
             'PHONE', // type - string
+            'SELECT', // type - select
+            'CHECKBOX', // type - string
             'MESSAGE,TEXT', // type - html/text
             'DOCUMENT,FILE' // type - file
         ),
