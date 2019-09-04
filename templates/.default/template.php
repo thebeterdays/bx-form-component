@@ -2,14 +2,16 @@
 /**
  * @var $APPLICATION
  * @var $templateFolder
- * @var $arParams
  */
 
 $asset = \Bitrix\Main\Page\Asset::getInstance();
 $asset->addCss($templateFolder. '/css/bootstrap.min.css');
 $asset->addJs($templateFolder. '/js/bootstrap.min.css');
 $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
+$asset->addCss($templateFolder. '/css/datepicker/bootstrap-datepicker3.standalone.min.css');
+$asset->addJs($templateFolder. '/js/datepicker/bootstrap-datepicker.min.js');
 ?>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
@@ -58,28 +60,35 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
                         <div class="invalid-feedback">
                             Please provide a valid message.
                         </div>
-                        <div class="custom-file col-md-12 mb-3">
-                            <input type="file" class="custom-file-input" id="file_<?=$arParams['TOKEN']?>" required>
-                            <label class="custom-file-label" for="file_<?=$arParams['TOKEN']?>">Choose file...</label>
-                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3 custom-file">
+                        <input type="file" class="custom-file-input" id="file_<?=$arParams['TOKEN']?>" required>
+                        <label class="custom-file-label" for="file_<?=$arParams['TOKEN']?>">Choose file...</label>
                     </div>
                     <div class="form-row align-items-center">
-                        <div class="col-auto my-1">
-                            <label class="mr-sm-2 sr-only" for="select_<?=$arParams['TOKEN']?>">Preference</label>
-                            <select class="custom-select mr-sm-2" id="select_<?=$arParams['TOKEN']?>"  required>
+                        <div class="col-md-4 mb-3 date">
+                            <label class="sr-only" for="date_<?=$arParams['TOKEN']?>">Date</label>
+                            <input type="text" class="form-control" placeholder="Date" id="date_<?=$arParams['TOKEN']?>" required>
+                            <span class="input-group-addon"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="sr-only" for="select_<?=$arParams['TOKEN']?>">Preference</label>
+                            <select class="custom-select" id="select_<?=$arParams['TOKEN']?>"  required>
                                 <? foreach($arResult["PROPERTY_SELECT"] as $id => $value): ?>
                                     <option value="<?= $id ?>"><?= $value ?></option>
                                 <? endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-auto my-1">
-                            <button type="submit" class="btn btn-primary" id="button_<?=$arParams['TOKEN']?>" >Submit</button>
-                        </div>
-                        <div class="col-auto my-1">
-                            <div class="custom-control custom-checkbox mr-sm-2">
+                        <div class="col-md-2 mb-3">
+                            <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="checkbox_<?=$arParams['TOKEN']?>" required>
                                 <label class="custom-control-label" for="checkbox_<?=$arParams['TOKEN']?>">Check</label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary" id="button_<?=$arParams['TOKEN']?>" >Submit</button>
                         </div>
                     </div>
                 </div>
@@ -92,6 +101,10 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
     `use strict`;
     
     $(() => {
+        $(`#date_<?=$arParams['TOKEN']?>`).closest(`.date`).datepicker({
+            format: `dd.mm.yyyy`,
+        });
+
         $(`#file_<?=$arParams['TOKEN']?>`).change(e => {
             $(e.currentTarget).next(`label`).html(e.currentTarget.files[0].name);
         });
@@ -119,6 +132,7 @@ $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
                 data.append(`PHONE`, $(`#phone_<?=$arParams['TOKEN']?>`).val());
                 data.append(`MESSAGE`, $(`#message_<?=$arParams['TOKEN']?>`).val());
                 data.append(`SELECT`, $(`#select_<?=$arParams['TOKEN']?>`).val());
+                data.append(`DATE`, $(`#date_<?=$arParams['TOKEN']?>`).val());
                 data.append(`CHECKBOX`, $(`#checkbox_<?=$arParams['TOKEN']?>`).prop(`checked`));
                 data.append(`DETAIL_URL`, `<?=$APPLICATION->GetCurDir()?>`);
                 $.ajax({
