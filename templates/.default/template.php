@@ -2,13 +2,15 @@
 /**
  * @var $APPLICATION
  * @var $templateFolder
+ * @var $arParams
+ * @var $arResult
  */
 
 $asset = \Bitrix\Main\Page\Asset::getInstance();
 $asset->addCss($templateFolder. '/css/bootstrap.min.css');
 $asset->addJs($templateFolder. '/js/bootstrap.min.css');
 $asset->addJs($templateFolder. '/js/jquery-3.4.1.min.js');
-$asset->addCss($templateFolder. '/css/datepicker/bootstrap-datepicker3.standalone.min.css');
+$asset->addCss($templateFolder. '/css/datepicker/bootstrap-datepicker.standalone.min.css');
 $asset->addJs($templateFolder. '/js/datepicker/bootstrap-datepicker.min.js');
 ?>
 
@@ -99,7 +101,7 @@ $asset->addJs($templateFolder. '/js/datepicker/bootstrap-datepicker.min.js');
 
 <script type="application/javascript">
     `use strict`;
-    
+
     $(() => {
         $(`#date_<?=$arParams['TOKEN']?>`).closest(`.date`).datepicker({
             format: `dd.mm.yyyy`,
