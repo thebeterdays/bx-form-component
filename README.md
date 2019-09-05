@@ -8,6 +8,7 @@ $APPLICATION->IncludeComponent(
     array(
         'IBLOCK_ID' => '1',
         'MAIL_EVENT' => 'FORM_SENDED',
+        'ACTIVE' => 'Y',
         'TOKEN' => 'form001',
         'PROPS' => array(
             'NAME', // type - string

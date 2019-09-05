@@ -53,6 +53,9 @@ class Form extends CBitrixComponent {
             'IBLOCK_ID' => $iblock_id,
             'PROPERTY_VALUES' => []
         ];
+        if (isset($this->arParams['ACTIVE'])) {
+        	$fields['ACTIVE'] = $this->arParams['ACTIVE'];
+        }
         foreach ($props as $key => $prop) {
             if (in_array($key, $available_props)) {
                 $fields['PROPERTY_VALUES'][$key]['VALUE'] = $prop;
