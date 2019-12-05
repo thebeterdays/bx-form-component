@@ -10,6 +10,7 @@ $APPLICATION->IncludeComponent(
         'MAIL_EVENT' => 'FORM_SENDED',
         'ACTIVE' => 'Y',
         'TOKEN' => 'form001',
+        'FORM_NAME' => 'Form 1',
         'PROPS' => array(
             'NAME', // type - string
             'EMAIL', // type - string
