@@ -49,7 +49,7 @@ class Form extends CBitrixComponent {
 
         $el = new CIBlockElement;
         $fields = [
-            'NAME' => $this->arParams['FORM_NAME'],
+            'NAME' => !empty($this->arParams['FORM_NAME']) ? $this->arParams['FORM_NAME'] : 'Форма',
             'IBLOCK_ID' => $iblock_id,
             'PROPERTY_VALUES' => []
         ];
