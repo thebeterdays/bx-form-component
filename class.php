@@ -6,7 +6,7 @@ use \Bitrix\Main\Application,
 /**
  * Class Form
  */
-class Form extends CBitrixComponent {
+class CustomFormComponent extends CBitrixComponent {
 
     public function executeComponent() {
 
