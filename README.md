@@ -19,8 +19,8 @@ $APPLICATION->IncludeComponent(
             'CHECKBOX', // type - string
             'DATE', // type - date
             'MESSAGE,TEXT', // type - html/text
-            'DOCUMENT,FILE' // type - file
-            'DOCUMENTS,FILES' // type - files
+            'DOCUMENT,FILE', // type - file
+            'DOCUMENTS,FILES' // type - multiple files
         ),
     )
 );

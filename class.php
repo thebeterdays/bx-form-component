@@ -94,24 +94,24 @@ class CustomFormComponent extends CBitrixComponent
             } else if (in_array("$key,FILE", $available_props)) {
                 $fields["PROPERTY_VALUES"][$key] = $_FILES[$key];
             } else if (in_array("$key,FILES", $available_props)) {
-				$fields["PROPERTY_VALUES"][$key] = $this->normalizeFiles($_FILES[$key]);
-			}
+                $fields["PROPERTY_VALUES"][$key] = $this->normalizeFiles($_FILES[$key]);
+            }
         }
         $id = $el->Add($fields);
 
         return $id;
     }
-    
+
     private function normalizeFiles($vector)
-	{
-		$result = array();
-        
-		foreach ($vector as $key1 => $value1) {
+    {
+        $result = array();
+
+        foreach ($vector as $key1 => $value1) {
             foreach ($value1 as $key2 => $value2) {
-				$result[$key2][$key1] = $value2;
+                $result[$key2][$key1] = $value2;
             }
         }
-		
-		return $result;
-	}
+
+        return $result;
+    }
 }
