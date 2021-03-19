@@ -8,6 +8,8 @@ $APPLICATION->IncludeComponent(
     array(
         'IBLOCK_ID' => '1',
         'MAIL_EVENT' => 'FORM_SENDED',
+        'RECAPTCHA_PUBLIC_KEY' => 'GoogleRecaptchaPublicKey',
+        'RECAPTCHA_PRIVATE_KEY' => 'GoogleRecaptchaPrivateKey',
         'ACTIVE' => 'Y',
         'TOKEN' => 'form001',
         'FORM_NAME' => 'Form 1',
