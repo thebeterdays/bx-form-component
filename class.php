@@ -19,9 +19,11 @@ class CustomFormComponent extends CBitrixComponent
             $file_list = $request->getFileList()->toArray();
             $props = array_merge($post_list, $file_list);
 
-            if (!$this->recaptcha($post_list["RECAPTCHA"])) {
-                echo json_encode(["status" => false, "message" => "Не пройдена проверка reCAPTCHA"]);
-                exit();
+            if ($this->arParams["RECAPTCHA_ENABLED"] === 'Y') {
+                if (!$this->recaptcha($post_list["RECAPTCHA"])) {
+                    echo json_encode(["status" => false, "message" => "Не пройдена проверка reCAPTCHA"]);
+                    exit();
+                }
             }
 
             $available_props = $this->arParams["PROPS"];
