@@ -63,7 +63,7 @@ $this->addExternalCss('/local/static/bundle/consult.css');
                             <span>
                                 Нажимая кнопку «Oтправить», вы даете согласие <a href="#" target="_blank"><strong>на обработку персональных данных</strong></a>
                             </span>
-                                <button class="red-btn">Отправить</button>
+                                <button type="button" class="red-btn">Отправить</button>
                             </div>
                         </form>
                     </div>

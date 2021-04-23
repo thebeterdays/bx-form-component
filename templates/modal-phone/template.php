@@ -61,7 +61,7 @@ $this->addExternalCss('/local/static/bundle/modalphone.css');
                         <div class="modal-agreement">Нажимая кнопку «Oтправить», вы даете согласие на обработку
                             персональных данных
                         </div>
-                        <button class="red-btn" onclick="ym(55774312, 'reachGoal', 'recall'); return true;">Отправить
+                        <button type="button" class="red-btn" onclick="ym(55774312, 'reachGoal', 'recall'); return true;">Отправить
                         </button>
                     </div>
                 </form>

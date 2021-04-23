@@ -84,7 +84,7 @@ if ($APPLICATION->GetCurPage() != '/basket/'):
                             <span>
                                 Нажимая кнопку «Oтправить», вы даете согласие на <a href="#" target="_blank"><strong>обработку персональных данных</strong></a>
                             </span>
-                        <button class="red-btn red-btn--question">Отправить</button>
+                        <button type="button" class="red-btn red-btn--question">Отправить</button>
                     </div>
                 </form>
             </div>
