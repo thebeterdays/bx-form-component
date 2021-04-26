@@ -24,7 +24,7 @@ if ($APPLICATION->GetCurPage() != '/basket/'):
                 </div>
             </div>
             <div class="questionform-wrapper__form" id="form_<?= $arParams['TOKEN'] ?>">
-                <form  id="footer-form">
+                <form id="footer-form">
                     <div class="form-success form-success--default">
                         <img src="/local/static/assets/img/checked.svg" alt="">Вы успешно отправили заявку!
                     </div>
@@ -53,7 +53,21 @@ if ($APPLICATION->GetCurPage() != '/basket/'):
                                    required
                                    data-validation-error-msg-required="Поле, обязательно к заполнению"
                                    data-validation="required">
-
+                            <div class="select-container">
+                                <select name="region" required style="
+    width: 300px;
+    height: 50px;
+    border: none;
+    padding: 16px 20px;
+    color: #26293b;
+">
+                                    <option style="display: none;" value=''>Выберите регион</option>
+                                    <? foreach ($GLOBALS['regions'] as $arRegion): ?>
+                                        <option value='<?= $arRegion['0'] ?>'><?= $arRegion['0'] ?></option>
+                                    <?endforeach;
+                                    unset($GLOBALS['regions']) ?>
+                                </select>
+                            </div>
 
 
                         </div>
@@ -61,12 +75,12 @@ if ($APPLICATION->GetCurPage() != '/basket/'):
                             <div class="form-second__inner-wrapper">
                                 <label for="availability_and_price">
                                     <!--<input type="checkbox" name="availability_and_price" class="js-price">-->
-                                    <input type="checkbox" name="availability_and_price" >
+                                    <input type="checkbox" name="availability_and_price">
                                     Узнать наличие и цену
                                 </label>
                                 <label for="delivery">
                                     <!--<input type="checkbox" name="delivery" class="js-delivery">-->
-                                    <input type="checkbox" name="delivery" >
+                                    <input type="checkbox" name="delivery">
                                     Рассчитать доставку
                                 </label>
                             </div>

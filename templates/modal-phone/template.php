@@ -11,7 +11,7 @@ $this->addExternalCss('/local/static/bundle/modalphone.css');
     <div class="modal modal-phone fade" id="modal-phone" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="margin-bottom: 20px;">
                     <div class="modal-title">Заказать звонок</div>
                     <a href="#" class="close" data-dismiss="modal" aria-label="Close"></a>
                 </div>
@@ -55,6 +55,16 @@ $this->addExternalCss('/local/static/bundle/modalphone.css');
                                       required
                                       data-validation-error-msg-required="Поле, обязательно к заполнению"
                                       data-validation="required"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <select name="region" required style="width: 100%;
+">
+                                <option style="display: none;" value=''>Выберите регион</option>
+                                <? foreach ($GLOBALS['regions'] as $arRegion): ?>
+                                    <option value='<?= $arRegion['0'] ?>'><?= $arRegion['0'] ?></option>
+                                <?endforeach;
+                                unset($GLOBALS['regions']) ?>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

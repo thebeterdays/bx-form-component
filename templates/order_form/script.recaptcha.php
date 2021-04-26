@@ -9,7 +9,6 @@
 <script type="application/javascript">
     `use strict`
     $(() => {
-        const formContainer = $('.modal-order')
         $.customPhoneMask( $(`#form_<?=$arParams['TOKEN']?> *[name="phone"]`))
         $(`#form_<?=$arParams['TOKEN']?>`).hover(() => {
             if (typeof recaptcha === "undefined") {
@@ -45,7 +44,7 @@
                     data.append(`PHONE`, $(`#form_<?=$arParams['TOKEN']?> *[name="phone"]`).val())
                     data.append(`EMAIL`, $(`#form_<?=$arParams['TOKEN']?> *[name="email"]`).val())
                     data.append(`MESSAGE`, $(`#form_<?=$arParams['TOKEN']?> *[name="question"]`).val())
-                    data.append(`ORDER`, $(`#form_<?=$arParams['TOKEN']?> *[name="question"]`).val())
+                    //data.append(`ORDER`, $(`#form_<?//=$arParams['TOKEN']?>// *[name="question"]`).val())
                     $.ajax({
                         method: `post`,
                         url: `<?=$APPLICATION->GetCurDir()?>`,
@@ -55,8 +54,8 @@
                         success: (data) => {
                             data = JSON.parse(data)
                             if (data.status === true) {
-                                formContainer.find('.form-block, .form-row, .modal-footer, .modal-order-form, .order-composition').hide();
-                                formContainer.find('.form-success').fadeIn(400);
+                                $(`#form_<?=$arParams['TOKEN']?>`).find('.form-block, .form-row, .modal-footer, .modal-order-form, .order-composition').hide();
+                                $(`#form_<?=$arParams['TOKEN']?>`).find('.form-success').fadeIn(400);
                                 $(this).parent('.modal-content').css('height', '33%');
                                 $('.basket__side').html('Ваша корзина пуста.');
                                 $('.basket__order').remove();

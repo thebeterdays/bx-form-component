@@ -60,6 +60,20 @@ $this->addExternalCss('/local/static/bundle/consult.css');
                                       data-validation="required"></textarea>
                             </div>
                             <div class="form-row">
+                                <select name="region" required style="width: 100%;
+    border: none;
+    padding: 16px 20px;
+    color: #26293b;
+    font: 500 14px/100% Montserrat;
+">
+                                    <option style="display: none;" value=''>Выберите регион</option>
+                                    <? foreach ($GLOBALS['regions'] as $arRegion): ?>
+                                        <option value='<?= $arRegion['0'] ?>'><?= $arRegion['0'] ?></option>
+                                    <?endforeach;
+                                    unset($GLOBALS['regions']) ?>
+                                </select>
+                            </div>
+                            <div class="form-row">
                             <span>
                                 Нажимая кнопку «Oтправить», вы даете согласие <a href="#" target="_blank"><strong>на обработку персональных данных</strong></a>
                             </span>

@@ -40,7 +40,7 @@
                     data.append(`RECAPTCHA`, retoken)
                     data.append(`TOKEN`, `<?=$arParams['TOKEN']?>`)
                     data.append(`NAME`, $(`#form_<?=$arParams['TOKEN']?> *[name="name"]`).val())
-                    //data.append(`REGION`, $(`#form_<?//=$arParams['TOKEN']?>// *[name="s-region"]`).val())
+                    data.append(`REGION`, $(`#form_<?=$arParams['TOKEN']?> *[name="region"]`).val())
                     data.append(`PHONE`, $(`#form_<?=$arParams['TOKEN']?> *[name="phone"]`).val())
                     data.append(`COMPANY`, $(`#form_<?=$arParams['TOKEN']?> *[name="company"]`).val())
                     data.append(`PRICE`, $(`#form_<?=$arParams['TOKEN']?> *[name="availability_and_price"]`)[0].checked)

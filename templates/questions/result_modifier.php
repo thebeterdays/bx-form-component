@@ -7,5 +7,5 @@ if (\Bitrix\Main\Loader::includeModule("iblock")) {
     }
 };
 $json = file_get_contents($_SERVER["DOCUMENT_ROOT"] . '/local/static/regions.json');
-//$GLOBALS['regions'] = json_decode($json, true);
+$GLOBALS['regions'] = json_decode($json, true);
 

@@ -30,7 +30,7 @@
                 let data = new FormData
                 data.append(`TOKEN`, `<?=$arParams['TOKEN']?>`)
                 data.append(`NAME`, $(`#form_<?=$arParams['TOKEN']?> *[name="s-name"]`).val())
-                data.append(`REGION`, $(`#form_<?=$arParams['TOKEN']?> *[name="s-region"]`).val())
+                data.append(`REGION`, $(`#form_<?=$arParams['TOKEN']?> *[name="region"]`).val())
                 data.append(`PHONE`, $(`#form_<?=$arParams['TOKEN']?> *[name="s-phone"]`).val())
                 data.append(`SERVICE`, $(`#form_<?=$arParams['TOKEN']?> *[name="s-service"]`).val())
                 $.ajax({

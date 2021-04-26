@@ -8,13 +8,12 @@
 $this->addExternalCss('/local/static/bundle/modalorder.css');
 $regionsQuery = CIBlockElement::getList(Array("NAME" => 'ASC'), Array("IBLOCK_ID" => 20), false, Array(), Array("IBLOCK_ID", "NAME", "PROPERTY_MANAGER_MAIL"));
 ?>
-    <div class="modal-order" id="modal-order" tabindex="-1" role="dialog" style="margin-top: unset;">
+    <div class="modal-order" id="form_<?= $arParams['TOKEN'] ?>" tabindex="-1" role="dialog" style="margin-top: unset;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">Оформление заказа</div>
-                    <!--                <a href="--><?//=SITE_DIR?><!--" class="close" data-dismiss="modal" aria-label="Close"></a>-->
-                </div>
+                           </div>
                 <form id="form-order">
                     <div class="modal-body">
                         <div class="form-success form-success--modal">
@@ -60,9 +59,10 @@ $regionsQuery = CIBlockElement::getList(Array("NAME" => 'ASC'), Array("IBLOCK_ID
                                         data-validation-error-msg-required="Поле, обязательно к заполнению"
                                         data-validation="required">
                                     <option style="display: none;">Выберите регион</option>
-                                    <?while ($region = $regionsQuery->fetch()):?>
-                                        <option value="<?=$region['PROPERTY_MANAGER_MAIL_VALUE']?>"><?=$region['NAME']?></option>
-                                    <?endwhile?>
+                                    <? foreach ($GLOBALS['regions'] as $arRegion): ?>
+                                        <option value='<?= $arRegion['0'] ?>'><?= $arRegion['0'] ?></option>
+                                    <?endforeach;
+                                    unset($GLOBALS['regions']) ?>
                                 </select>
                             </div>
                             <div class="form-rightside">
