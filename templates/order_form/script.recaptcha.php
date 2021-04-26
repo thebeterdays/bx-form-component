@@ -44,7 +44,7 @@
                     data.append(`PHONE`, $(`#form_<?=$arParams['TOKEN']?> *[name="phone"]`).val())
                     data.append(`EMAIL`, $(`#form_<?=$arParams['TOKEN']?> *[name="email"]`).val())
                     data.append(`MESSAGE`, $(`#form_<?=$arParams['TOKEN']?> *[name="question"]`).val())
-                    //data.append(`ORDER`, $(`#form_<?//=$arParams['TOKEN']?>// *[name="question"]`).val())
+                    data.append(`ORDER`, $(`#form_<?=$arParams['TOKEN']?> *[name="comp-inner"]`).text())
                     $.ajax({
                         method: `post`,
                         url: `<?=$APPLICATION->GetCurDir()?>`,

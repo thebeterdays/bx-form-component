@@ -5,11 +5,12 @@
  * @var $arParams
  * @var $arResult
  */
+CModule::IncludeModule("sale");
 $this->addExternalCss('/local/static/bundle/modalorder.css');
 $regionsQuery = CIBlockElement::getList(Array("NAME" => 'ASC'), Array("IBLOCK_ID" => 20), false, Array(), Array("IBLOCK_ID", "NAME", "PROPERTY_MANAGER_MAIL"));
 ?>
     <div class="modal-order" id="form_<?= $arParams['TOKEN'] ?>" tabindex="-1" role="dialog" style="margin-top: unset;">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" id="basket_order" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">Оформление заказа</div>
@@ -79,14 +80,15 @@ $regionsQuery = CIBlockElement::getList(Array("NAME" => 'ASC'), Array("IBLOCK_ID
                         </div>
                         <div class="order-composition">
                             <div class="comp-title">Состав вашего заказа</div>
-                            <div class="comp-inner"></div>
+                            <div class="comp-inner" name="comp-inner"></div>
                         </div>
+                        <div style="" data-rows-count="<?CSaleBasket::DeleteAll(CSaleBasket::GetBasketUserID());?>">
                     </div>
                     <div class="modal-footer">
                         <div class="success">Ваша заявка будет обработана в ближайшее время, и наш сотрудник свяжется с вами для уточнения деталей</div>
                         <div class="footer-row">
                             <div class="modal-agreement">Нажимая кнопку «Oтправить», вы даете согласие на <a href="#" target="_blank"><strong>обработку персональных данных</strong></a></div>
-                            <button type="button" class="btn-submit--order" onclick="ym(55774312, 'reachGoal', 'zayavka'); return true;">Отправить</button>
+                            <button type="button" class="btn-submit--order" onclick="ym(55774312, 'reachGoal', 'zayavka'); return true; ">Отправить</button>
                         </div>
                     </div>
                 </form>
