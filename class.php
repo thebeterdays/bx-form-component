@@ -52,13 +52,15 @@ class Form extends CBitrixComponent
 
             if ($db_el = $db_list->GetNextElement()) {
                 $iblock_el_props = $db_el->GetProperties();
+                $iblock_el_fields = $db_el->GetFields();
 
                 $event_params = [
                     "EVENT_NAME" => $this->arParams["MAIL_EVENT"],
                     "LID" => SITE_ID,
                     "C_FIELDS" => [
                         "EMAIL_TO" => $this->arParams["EMAIL_TO"],
-                        "EMAIL_FROM" => $this->arParams["EMAIL_FROM"]
+                        "EMAIL_FROM" => $this->arParams["EMAIL_FROM"],
+                        "ELEMENT_ID" => $iblock_el_fields['ID']
                     ]
                 ];
 
